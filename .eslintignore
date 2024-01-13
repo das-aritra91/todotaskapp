@@ -1,0 +1,6 @@
+# .eslintignore
+node_modules/
+build/
+dist/
+webpack.config.js
+jest.config.js
