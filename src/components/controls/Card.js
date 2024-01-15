@@ -45,27 +45,40 @@ const MuiCard = (props) => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            handleSubmitEditClick(event.target.value);
+           // handleSubmitEditClick(event.target.value);
+          
+            if (!taskName) {
+                setError('Please enter a task.');
+            } else {
+                const taskDetailsToEdit = {
+                    taskName: taskName,
+                    completionTime: taskDetails.completionTime
+                }
+    
+                dispatch(updateTask(taskDetailsToEdit));
+                setIsEditable(false);
+                setError('');
+            }
         }
     };
     const handleChangeTaskName = (event) => {
         setTaskName(event.target.value);
     };
 
-    const handleSubmitEditClick = (newTaskName) => {
-        if (!newTaskName) {
-            setError('Please enter a task.');
-        } else {
-            const taskDetailsToEdit = {
-                taskName: newTaskName,
-                completionTime: taskDetails.completionTime
-            }
+    // const handleSubmitEditClick = () => {
+    //     if (!taskName) {
+    //         setError('Please enter a task.');
+    //     } else {
+    //         const taskDetailsToEdit = {
+    //             taskName: taskName,
+    //             completionTime: taskDetails.completionTime
+    //         }
 
-            dispatch(updateTask(taskDetailsToEdit));
-            setIsEditable(false);
-            setError('');
-        }
-    }
+    //         dispatch(updateTask(taskDetailsToEdit));
+    //         setIsEditable(false);
+    //         setError('');
+    //     }
+    // }
 
     return (
         <>
@@ -88,6 +101,7 @@ const MuiCard = (props) => {
                         style={{ marginLeft: '8px', textTransform: 'uppercase' }}>
                         <input
                             type="text"
+                            data-testid="taskname-input"
                             // variant="standard"
                             value={taskName.toUpperCase()}
                             onChange={handleChangeTaskName}
@@ -125,7 +139,7 @@ MuiCard.propTypes = {
     page: PropTypes.string.isRequired, // Example type, adjust as needed
     taskDetails: PropTypes.shape({
       taskName: PropTypes.string.isRequired,
-      completionTime: PropTypes.string.isRequired, // Example type, adjust as needed
+      completionTime: PropTypes.string, // Example type, adjust as needed
     //   id: PropTypes.number.isRequired, // Example type, adjust as needed
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired,

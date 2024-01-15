@@ -3,6 +3,7 @@ import { Dialog, DialogActions, DialogContent, Button, DialogTitle, TextField, A
 import { useDispatch } from 'react-redux';
 import { saveTask } from '../redux/actions/action';
 import PropTypes from 'prop-types';
+import '../style/Card.css';
 
 export const generateTaskId = () => {
         return Math.random().toString(36).substring(2, 15);
@@ -56,6 +57,9 @@ const MuiModal = (props) => {
         setError('');
     }
 
+    // const handleChangeName=(e) => {setTaskName(e.target.value)}
+    // const handleChangeCompletionTime=(e) => setCompletionTime(e.target.value)
+
     return (
         <>
             <Dialog open={open} onClose={handleClose}>
@@ -71,6 +75,7 @@ const MuiModal = (props) => {
                         variant="standard"
                         value={taskName}
                         onChange={(e) => setTaskName(e.target.value)}
+                        //onChange={handleChangeName}
                     />
 
                     <br />
@@ -82,9 +87,11 @@ const MuiModal = (props) => {
                         variant="standard"
                         style={{ marginTop: '16px' }}
                         value={completionTime}
-                        onChange={(e) => setCompletionTime(e.target.value)}
+                         onChange={(e) => setCompletionTime(e.target.value)}
+                        //onChange={handleChangeCompletionTime}
                         required
                     />
+                    {/* {error && <Alert severity="error" className="marginTop">{error}</Alert>} */}
 
                     {error && <Alert severity="error" style={{ marginTop: '10px' }}>{error}</Alert>}
 

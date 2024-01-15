@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import { useSelector } from 'react-redux';
 
 const TaskReminder = () => {
-
+debugger;
   const saveTask = useSelector((state) => state.saveTask);
 
   const NotifyTaskNameReminder = (tasks) => {
