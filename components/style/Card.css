@@ -1,0 +1,12 @@
+.input-non-editable {
+    border: none;
+    outline: none;
+}
+
+.input-editable {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+}
+
+.marginTop{ margin-top: '10px' }
